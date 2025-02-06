@@ -12,7 +12,7 @@ pipeline {
     }
     environment{
         def appVersion = '' //variable declaration
-        nexusUrl = 'nexus.lingaiah.online:8081'
+        //nexusUrl = 'nexus.lingaiah.online:8081'
         region = "us-east-1"
         account_id = "730335449147"
     }
@@ -46,7 +46,7 @@ pipeline {
         stage('Docker build'){
             steps{
                 sh """
-                    aws ecr get-login-password --region ${region} | docker login --username AWS --password-stdin ${account_id}.dkr.ecr.${region}.amazonaws.com
+                    aws ecr get-login-password --region ${region} | docker login --username lingadevops --password-stdin Welcome#100  ${account_id}.dkr.ecr.${region}.amazonaws.com
 
                     docker build -t ${account_id}.dkr.ecr.${region}.amazonaws.com/expense-backend:${appVersion} .
 
@@ -61,7 +61,7 @@ pipeline {
                     aws eks update-kubeconfig --region us-east-1 --name expense-dev
                     cd helm
                     sed -i 's/IMAGE_VERSION/${appVersion}/g' values.yaml
-                    helm upgrade backend .
+                    helm install backend .
                 """
             }
         }
