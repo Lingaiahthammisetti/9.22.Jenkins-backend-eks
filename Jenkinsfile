@@ -46,8 +46,8 @@ pipeline {
         stage('Docker build'){
             steps{
                 sh """
-                    aws ecr get-login-password --region ${region} | docker login --username lingadevops --password-stdin Welcome#100  ${account_id}.dkr.ecr.${region}.amazonaws.com
-
+                    aws ecr get-login-password --region ${region} | docker login --username AWS --password-stdin ${account_id}.dkr.ecr.${region}.amazonaws.com
+                    
                     docker build -t ${account_id}.dkr.ecr.${region}.amazonaws.com/expense-backend:${appVersion} .
 
                     docker push ${account_id}.dkr.ecr.${region}.amazonaws.com/expense-backend:${appVersion}
