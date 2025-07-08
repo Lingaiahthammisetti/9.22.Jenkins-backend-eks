@@ -23,7 +23,6 @@ spec:
         project: expense
         tier: app
     spec:
-
       initContainers:
       - name: init-myservice
         image: busybox:1.28
