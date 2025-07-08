@@ -5,5 +5,3 @@ metadata:
   namespace: expense
 data:
   DB_HOST: db-dev.lingaiah.online
-  # DB_USER: expense
-  # DB_PASSWORD: ExpenseApp1
