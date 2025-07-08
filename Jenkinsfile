@@ -60,7 +60,10 @@ pipeline {
                     aws eks update-kubeconfig --region us-east-1 --name expense-dev
                     cd helm
                     sed -i 's/IMAGE_VERSION/${appVersion}/g' values.yaml
-                    helm install backend . -n expense
+                    #helm install backend . -n expense
+
+                    # Install or upgrade the Helm release
+                    helm upgrade --install backend . -n expense
 
                 """
             }
